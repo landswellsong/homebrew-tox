@@ -29,15 +29,15 @@ class Toxic < Formula
     hacks
 
     orig_pkg_config_path = ENV["PKG_CONFIG_PATH"]
-    ENV["PKG_CONFIG_PATH"] = "#{Dir.pwd}/_hacks:#{orig_pkg_config_path}"
+    ENV["PKG_CONFIG_PATH"] = "#{Dir.pwd}/_hacks:/usr/X11/lib/pkgconfig:#{orig_pkg_config_path}"
 
     ENV.append "CFLAGS", "-DPACKAGE_DATADIR=\\\"#{prefix}/share/toxic\\\""
 
     ENV["USER_CFLAGS"] = ENV["CFLAGS"]
     ENV["USER_LDFLAGS"] = ENV["LDFLAGS"]
 
-    system "make", "PREFIX='#{prefix}'", "DISABLE_DESKTOP_NOTIFY=YES", "DISABLE_X11=YES"
-    system "make", "install", "PREFIX='#{prefix}'", "DISABLE_DESKTOP_NOTIFY=YES", "DISABLE_X11=YES"
+    system "make", "PREFIX='#{prefix}'", "DISABLE_DESKTOP_NOTIFY=YES"
+    system "make", "install", "PREFIX='#{prefix}'", "DISABLE_DESKTOP_NOTIFY=YES"
   end
 
   def caveats
